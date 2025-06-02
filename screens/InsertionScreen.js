@@ -70,7 +70,7 @@ export default function ScreenInsertion({ navigation }) {
         style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
       />
 
-      <Text>Vibração do Solo (%)</Text>
+      <Text>Vibração do Solo (m/s²)</Text>
       <TextInput
         keyboardType="numeric"
         value={vibration}

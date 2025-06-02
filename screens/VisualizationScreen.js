@@ -30,6 +30,7 @@ export default function VisualizationScreen({ navigation }) {
       <Text>Umidade: {lastEntry.humidity}%</Text>
       <Text>Inclinação: {lastEntry.inclination}°</Text>
       <Text>Cidade: {lastEntry.city}</Text>
+      <Text>Vibração: {lastEntry.vibration} m/s²</Text>
       <Text style={{ fontWeight: 'bold', marginTop: 10 }}>Risco: {risk}</Text>
 
       {risk === 'Alto' && (
