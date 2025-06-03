@@ -6,28 +6,28 @@ export default function MenuScreen({ navigation }) {
 
   const menuItems = [
     <View style={styles.card}>
-      <Image source={require('../assets/icon.png')} style={styles.icon} />
+      <Image source={require('../assets/Insercao.png')} style={styles.icon} />
       <TouchableOpacity onPress={() => navigation.navigate('Inserção')}>
         <Text style={styles.buttonText}>INSERÇÃO DE DADOS</Text>
       </TouchableOpacity>
     </View>,
 
     <View style={styles.card}>
-      <Image source={require('../assets/icon.png')} style={styles.icon} />
+      <Image source={require('../assets/risco.png')} style={styles.icon} />
       <TouchableOpacity onPress={() => navigation.navigate('Riscos')}>
         <Text style={styles.buttonText}>VISUALIZAÇÃO DE RISCOS</Text>
       </TouchableOpacity>
     </View>,
 
     <View style={styles.card}>
-      <Image source={require('../assets/icon.png')} style={styles.icon} />
+      <Image source={require('../assets/historico.png')} style={styles.icon} />
       <TouchableOpacity onPress={() => navigation.navigate('Histórico')}>
         <Text style={styles.buttonText}>HISTÓRICO DE MONITORAMENTO</Text>
       </TouchableOpacity>
     </View>,
 
     <View style={styles.card}>
-      <Image source={require('../assets/icon.png')} style={styles.icon} />
+      <Image source={require('../assets/mitigacao.png')} style={styles.icon} />
       <TouchableOpacity onPress={() => navigation.navigate('Ações')}>
         <Text style={styles.buttonText}>AÇÕES DE MITIGAÇÃO</Text>
       </TouchableOpacity>

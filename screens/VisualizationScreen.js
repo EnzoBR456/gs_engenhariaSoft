@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function VisualizationScreen({ navigation }) {
   const [lastEntry, setLastEntry] = useState(null);
+  const [risk, setRisk] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await AsyncStorage.getItem('monitoringData');
       const parsed = data ? JSON.parse(data) : [];
-      setLastEntry(parsed[parsed.length - 1]);
+      const latest = parsed[parsed.length - 1];
+      setLastEntry(latest);
+
+      if (latest) {
+        const computedRisk = getRiskLevel(latest.humidity, latest.inclination);
+        setRisk(computedRisk);
+
+        // 🔔 Exibe alerta se risco for alto
+        if (computedRisk === 'Alto') {
+          Alert.alert(
+            '🚨 Alerta',
+            '•Risco alto de deslizamento detectado\n•Levantando Barreira\n•Ativando Sirene\n•Por favor se proteja',
+            [{ text: 'OK' }]
+          );
+        }
+      }
     };
+
     fetchData();
   }, []);
 
@@ -21,8 +38,6 @@ export default function VisualizationScreen({ navigation }) {
   };
 
   if (!lastEntry) return <Text style={{ padding: 20 }}>Carregando dados...</Text>;
-
-  const risk = getRiskLevel(lastEntry.humidity, lastEntry.inclination);
 
   return (
     <View style={{ padding: 20 }}>
@@ -47,6 +62,29 @@ export default function VisualizationScreen({ navigation }) {
           </Text>
         </View>
       )}
+
+      {/* Atuadores simulados */}
+      {risk === 'Alto' && (
+        <>
+          <View style={{
+            backgroundColor: 'red',
+            width: 100,
+            height: 100,
+            borderRadius: 50,
+            alignSelf: 'center',
+            marginVertical: 10,
+          }} />
+          <Text style={{ textAlign: 'center' }}>⚠️ Sirene Ativada</Text>
+
+          <View style={{
+            backgroundColor: 'gray',
+            height: 20,
+            marginVertical: 10
+          }} />
+          <Text style={{ textAlign: 'center' }}>🚧 Barreira Ativada</Text>
+        </>
+      )}
+
       <Button title="Ver Histórico" onPress={() => navigation.navigate('Histórico')} />
     </View>
   );
