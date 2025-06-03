@@ -22,6 +22,7 @@ export default function HistoryScreen({ navigation }) {
           <Text>{new Date(item.timestamp).toLocaleString()}</Text>
           <Text>Cidade: {item.city}</Text>
           <Text>Umidade: {item.humidity}%</Text>
+          <Text>Pluviométrico: {item.pluvio} mm/hora</Text>
           <Text>Inclinação: {item.inclination}°</Text>
           <Text>Vibração: {item.vibration} m/s²</Text>
         </View>

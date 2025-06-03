@@ -8,6 +8,7 @@ export default function ScreenInsertion({ navigation }) {
   const [humidity, setHumidity] = useState('');
   const [inclination, setInclination] = useState('');
   const [vibration, setVibration] = useState('');
+  const [pluvio, setPluvio] = useState('');
 
   const saveData = async () => {
     if (!humidity || !inclination || !city || !vibration) {
@@ -59,6 +60,14 @@ export default function ScreenInsertion({ navigation }) {
         keyboardType="numeric"
         value={humidity}
         onChangeText={setHumidity}
+        style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
+      />
+
+      <Text>Pluviométrico (mm/hora)</Text>
+      <TextInput
+        keyboardType="numeric"
+        value={pluvio}
+        onChangeText={setPluvio}
         style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
       />
 

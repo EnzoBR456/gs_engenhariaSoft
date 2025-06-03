@@ -21,7 +21,7 @@ export default function VisualizationScreen({ navigation }) {
         if (computedRisk === 'Alto') {
           Alert.alert(
             '🚨 Alerta',
-            '•Risco alto de deslizamento detectado\n•Levantando Barreira\n•Ativando Sirene\n•Por favor se proteja',
+            '•Risco alto de deslizamento de terra detectado\n•Levantando Barreira\n•Ativando Sirene\n•Por favor se afaste do local',
             [{ text: 'OK' }]
           );
         }
@@ -32,8 +32,8 @@ export default function VisualizationScreen({ navigation }) {
   }, []);
 
   const getRiskLevel = (humidity, inclination) => {
-    if (humidity > 80 && inclination > 30) return 'Alto';
-    if (humidity > 50 || inclination > 20) return 'Moderado';
+    if (humidity > 60 && inclination > 30) return 'Alto';
+    if (humidity > 40 || inclination > 20) return 'Moderado';
     return 'Baixo';
   };
 
@@ -43,6 +43,7 @@ export default function VisualizationScreen({ navigation }) {
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 20, marginBottom: 10 }}>Nível de Risco Atual</Text>
       <Text>Umidade: {lastEntry.humidity}%</Text>
+      <Text>Pluviométrico: {lastEntry.pluvio}mm/hora</Text>
       <Text>Inclinação: {lastEntry.inclination}°</Text>
       <Text>Cidade: {lastEntry.city}</Text>
       <Text>Vibração: {lastEntry.vibration} m/s²</Text>
