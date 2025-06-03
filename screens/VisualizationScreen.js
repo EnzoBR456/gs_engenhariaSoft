@@ -17,7 +17,6 @@ export default function VisualizationScreen({ navigation }) {
         const computedRisk = getRiskLevel(latest.humidity, latest.inclination);
         setRisk(computedRisk);
 
-        // 🔔 Exibe alerta se risco for alto
         if (computedRisk === 'Alto') {
           Alert.alert(
             '🚨 Alerta',
@@ -42,47 +41,100 @@ export default function VisualizationScreen({ navigation }) {
   return (
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 20, marginBottom: 10 }}>Nível de Risco Atual</Text>
+      <Text>Cidade: {lastEntry.city}</Text>
       <Text>Umidade: {lastEntry.humidity}%</Text>
       <Text>Pluviométrico: {lastEntry.pluvio}mm/hora</Text>
       <Text>Inclinação: {lastEntry.inclination}°</Text>
-      <Text>Cidade: {lastEntry.city}</Text>
       <Text>Vibração: {lastEntry.vibration} m/s²</Text>
       <Text style={{ fontWeight: 'bold', marginTop: 10 }}>Risco: {risk}</Text>
 
       {risk === 'Alto' && (
-        <View style={{
-          backgroundColor: '#FFCCCC',
-          padding: 10,
-          borderRadius: 8,
-          marginVertical: 15,
-          borderWidth: 1,
-          borderColor: '#FF0000'
-        }}>
-          <Text style={{ color: '#B00000', fontWeight: 'bold', textAlign: 'center' }}>
-            ⚠️ Atenção: Risco alto de deslizamento! Tome precauções imediatas.
-          </Text>
-        </View>
-      )}
-
-      {/* Atuadores simulados */}
-      {risk === 'Alto' && (
         <>
-          <View style={{
-            backgroundColor: 'red',
-            width: 100,
-            height: 100,
-            borderRadius: 50,
-            alignSelf: 'center',
-            marginVertical: 10,
-          }} />
+          <View
+            style={{
+              backgroundColor: '#FFCCCC',
+              padding: 10,
+              borderRadius: 8,
+              marginVertical: 15,
+              borderWidth: 1,
+              borderColor: '#FF0000',
+            }}
+          >
+            <Text style={{ color: '#B00000', fontWeight: 'bold', textAlign: 'center' }}>
+              ⚠️ Atenção: Risco alto de deslizamento! Tome precauções imediatas.
+            </Text>
+          </View>
+
+          <View
+            style={{
+              backgroundColor: 'red',
+              width: 100,
+              height: 100,
+              borderRadius: 50,
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}
+          />
           <Text style={{ textAlign: 'center' }}>⚠️ Sirene Ativada</Text>
 
-          <View style={{
-            backgroundColor: 'gray',
-            height: 20,
-            marginVertical: 10
-          }} />
+          <View
+            style={{
+              backgroundColor: 'gray',
+              height: 20,
+              marginVertical: 10,
+            }}
+          />
           <Text style={{ textAlign: 'center' }}>🚧 Barreira Ativada</Text>
+        </>
+      )}
+
+      {risk === 'Moderado' && (
+        <>
+          <View
+            style={{
+              backgroundColor: 'white',
+              width: 100,
+              height: 100,
+              borderRadius: 50,
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}
+          />
+          <Text style={{ textAlign: 'center' }}>⚠️ Sirene Desativada</Text>
+
+          <View
+            style={{
+              backgroundColor: 'gray',
+              height: 20,
+              marginVertical: 10,
+            }}
+          />
+          <Text style={{ textAlign: 'center' }}>🚧 Barreira Desativada</Text>
+        </>
+      )}
+
+      {risk === 'Baixo' && (
+        <>
+          <View
+            style={{
+              backgroundColor: 'white',
+              width: 100,
+              height: 100,
+              borderRadius: 50,
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}
+          />
+          <Text style={{ textAlign: 'center' }}>⚠️ Sirene Desativada</Text>
+
+          <View
+            style={{
+              backgroundColor: 'gray',
+              height: 20,
+              marginVertical: 10,
+            }}
+          />
+          <Text style={{ textAlign: 'center' }}>🚧 Barreira Desativada</Text>
         </>
       )}
 

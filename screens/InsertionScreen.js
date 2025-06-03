@@ -11,7 +11,7 @@ export default function ScreenInsertion({ navigation }) {
   const [pluvio, setPluvio] = useState('');
 
   const saveData = async () => {
-    if (!humidity || !inclination || !city || !vibration) {
+    if (!humidity || !inclination || !city || !vibration || !pluvio) {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
       return;
     }
@@ -20,6 +20,7 @@ export default function ScreenInsertion({ navigation }) {
       humidity: parseFloat(humidity),
       inclination: parseFloat(inclination),
       vibration: parseFloat(vibration),
+      pluvio: parseFloat(pluvio),
       city: city,
       timestamp: new Date().toISOString(),
     };
@@ -54,7 +55,7 @@ export default function ScreenInsertion({ navigation }) {
           <Picker.Item label="Porto Alegre" value="Porto Alegre" />
         </Picker>
       </View>
-
+      <Text style={{ marginTop: 15, color: 'green' }}>Status do Sensor de Umidade: OK</Text>
       <Text>Umidade do Solo (%)</Text>
       <TextInput
         keyboardType="numeric"
@@ -62,7 +63,7 @@ export default function ScreenInsertion({ navigation }) {
         onChangeText={setHumidity}
         style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
       />
-
+      <Text style={{ marginTop: 15, color: 'green' }}>Status do Sensor Pluviométrico: OK</Text>
       <Text>Pluviométrico (mm/hora)</Text>
       <TextInput
         keyboardType="numeric"
@@ -70,7 +71,7 @@ export default function ScreenInsertion({ navigation }) {
         onChangeText={setPluvio}
         style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
       />
-
+      <Text style={{ marginTop: 15, color: 'green' }}>Status do Sensor de Inclinação: OK</Text>
       <Text>Inclinação (graus)</Text>
       <TextInput
         keyboardType="numeric"
@@ -78,7 +79,7 @@ export default function ScreenInsertion({ navigation }) {
         onChangeText={setInclination}
         style={{ borderWidth: 1, padding: 10, marginVertical: 10 }}
       />
-
+      <Text style={{ marginTop: 15, color: 'green' }}>Status do Sensor de Vibração do Solo: OK</Text>
       <Text>Vibração do Solo (m/s²)</Text>
       <TextInput
         keyboardType="numeric"

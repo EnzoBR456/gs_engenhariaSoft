@@ -25,6 +25,7 @@ export default function HistoryScreen({ navigation }) {
           <Text>Pluviométrico: {item.pluvio} mm/hora</Text>
           <Text>Inclinação: {item.inclination}°</Text>
           <Text>Vibração: {item.vibration} m/s²</Text>
+
         </View>
       ))}
       <Button title="Ver Ações de Mitigação" onPress={() => navigation.navigate('Ações')} />
