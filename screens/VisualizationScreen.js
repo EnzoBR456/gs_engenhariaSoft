@@ -14,13 +14,18 @@ export default function VisualizationScreen({ navigation }) {
       setLastEntry(latest);
 
       if (latest) {
-        const computedRisk = getRiskLevel(latest.humidity, latest.inclination);
+        const computedRisk = getRiskLevel(
+          latest.humidity,
+          latest.inclination,
+          latest.vibration,
+          latest.pluvio
+        );
         setRisk(computedRisk);
 
         if (computedRisk === 'Alto') {
           Alert.alert(
             '🚨 Alerta',
-            '•Risco alto de deslizamento de terra detectado\n•Levantando Barreira\n•Ativando Sirene\n•Por favor se afaste do local',
+            '• Risco alto de deslizamento de terra detectado\n• Levantando Barreira\n• Ativando Sirene\n• Por favor se afaste do local',
             [{ text: 'OK' }]
           );
         }
@@ -30,20 +35,32 @@ export default function VisualizationScreen({ navigation }) {
     fetchData();
   }, []);
 
-  const getRiskLevel = (humidity, inclination) => {
-    if (humidity > 60 && inclination > 30) return 'Alto';
-    if (humidity > 40 || inclination > 20) return 'Moderado';
+  const getRiskLevel = (humidity, inclination, vibration, pluvio) => {
+    if (humidity > 60 && inclination > 30 && vibration > 0.9 && pluvio > 30) {
+      return 'Alto';
+    }
+
+    if (
+      humidity > 40 ||
+      inclination > 20 ||
+      (vibration > 0.1 && vibration < 0.5) ||
+      (pluvio > 5 && pluvio < 15)
+    ) {
+      return 'Moderado';
+    }
+
     return 'Baixo';
   };
 
-  if (!lastEntry) return <Text style={{ padding: 20 }}>Carregando dados...</Text>;
+  if (!lastEntry)
+    return <Text style={{ padding: 20 }}>Carregando dados...</Text>;
 
   return (
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 20, marginBottom: 10 }}>Nível de Risco Atual</Text>
       <Text>Cidade: {lastEntry.city}</Text>
       <Text>Umidade: {lastEntry.humidity}%</Text>
-      <Text>Pluviométrico: {lastEntry.pluvio}mm/hora</Text>
+      <Text>Pluviométrico: {lastEntry.pluvio} mm/hora</Text>
       <Text>Inclinação: {lastEntry.inclination}°</Text>
       <Text>Vibração: {lastEntry.vibration} m/s²</Text>
       <Text style={{ fontWeight: 'bold', marginTop: 10 }}>Risco: {risk}</Text>
@@ -142,3 +159,4 @@ export default function VisualizationScreen({ navigation }) {
     </View>
   );
 }
+

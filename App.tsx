@@ -27,7 +27,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Boas-vindas">
         <Stack.Screen name="Boas-vindas" component={WelcomeScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="Inserção" component={InsertionScreen} />
+        <Stack.Screen name="Dados" component={InsertionScreen} />
         <Stack.Screen name="Riscos" component={VisualizationScreen} />
         <Stack.Screen name="Histórico" component={HistoryScreen} />
         <Stack.Screen name="Ações" component={ActionScreen} />

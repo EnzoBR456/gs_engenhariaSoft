@@ -7,8 +7,8 @@ export default function MenuScreen({ navigation }) {
   const menuItems = [
     <View style={styles.card}>
       <Image source={require('../assets/Insercao.png')} style={styles.icon} />
-      <TouchableOpacity onPress={() => navigation.navigate('Inserção')}>
-        <Text style={styles.buttonText}>INSERÇÃO DE DADOS</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Dados')}>
+        <Text style={styles.buttonText}>SENSORES</Text>
       </TouchableOpacity>
     </View>,
 
@@ -29,9 +29,9 @@ export default function MenuScreen({ navigation }) {
     <View style={styles.card}>
       <Image source={require('../assets/mitigacao.png')} style={styles.icon} />
       <TouchableOpacity onPress={() => navigation.navigate('Ações')}>
-        <Text style={styles.buttonText}>AÇÕES DE MITIGAÇÃO</Text>
+        <Text style={styles.buttonText}>Ações de Mitigação</Text>
       </TouchableOpacity>
-    </View>
+    </View>,
   ];
 
   return (
