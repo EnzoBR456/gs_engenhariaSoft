@@ -13,7 +13,7 @@ import ActionScreen from './screens/ActionScreen';
 export type RootStackParamList = {
   'Boas-vindas': undefined;
   'Menu': undefined;
-  'Inserção': undefined;
+  'Dados': undefined;
   'Riscos': undefined;
   'Histórico': undefined;
   'Ações': undefined;
